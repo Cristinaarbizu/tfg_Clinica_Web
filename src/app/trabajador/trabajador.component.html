@@ -1,0 +1,42 @@
+<div class="trabajadores-container">
+  <h2>Gestión de Trabajadores</h2>
+
+  <div class="acciones">
+    <input
+      type="text"
+      [(ngModel)]="searchTerm"
+      (input)="onSearchTermChange()"
+      placeholder="Buscar por nombre, apellido, email o especialidad"
+      class="buscador"
+    />
+    <button class="nuevo-btn" [routerLink]="['/agregar-trabajador']">+ Nuevo Trabajador</button>
+  </div>
+
+  <table class="tabla-trabajadores" *ngIf="(filteredTrabajadores$ | async)?.length; else sinTrabajadores">
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Apellido</th>
+        <th>Email</th>
+        <th>Especialidad</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let trabajador of filteredTrabajadores$ | async">
+        <td>{{ trabajador.nombre }}</td>
+        <td>{{ trabajador.apellido }}</td>
+        <td>{{ trabajador.email }}</td>
+        <td>{{ trabajador.especialidad | titlecase }}</td>
+        <td>
+          <button class="editar-btn" (click)="editarTrabajador(trabajador)">Editar</button>
+          <button class="eliminar-btn" (click)="eliminarTrabajador(trabajador.id!)">Eliminar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <ng-template #sinTrabajadores>
+    <div class="sin-registros">No hay trabajadores para mostrar.</div>
+  </ng-template>
+</div>

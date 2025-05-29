@@ -1,0 +1,81 @@
+<div class="login-container">
+  <div class="login-header">
+    <img src="/logo1.png" alt="Arbizu & Pombo" class="logo">
+    <p class="subtitle">Más de 25 años cuidando de tu salud</p>
+  </div>
+  
+  <!-- Formulario de login -->
+  <form *ngIf="!showRegistration" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="email">Email:</label>
+      <input type="email" id="email" [(ngModel)]="email" name="email" required autocomplete="username">
+    </div>
+    <div class="form-group">
+      <label for="password">Contraseña:</label>
+      <input type="password" id="password" [(ngModel)]="password" name="password" required autocomplete="current-password">
+    </div>
+    <a href="#" class="forgot-password" (click)="showResetPassword=true; $event.preventDefault()">¿Has olvidado la contraseña?</a>
+    <button type="submit" class="btn-login" [disabled]="loading">Iniciar Sesión</button>
+    <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
+  </form>
+
+  <div class="toggle-link" *ngIf="!showRegistration">
+    ¿No tienes cuenta?
+    <a href="#" (click)="showRegistration = true; $event.preventDefault()">Regístrate aquí</a>
+  </div>
+
+  <!-- Formulario de registro -->
+  <div class="registration-form" *ngIf="showRegistration">
+    <h2>Registro de nuevo usuario</h2>
+    <form (ngSubmit)="onRegister()">
+      <div class="form-group">
+        <label for="nombre">Nombre completo:</label>
+        <input type="text" id="nombre" [(ngModel)]="registro.nombre" name="nombre" required>
+      </div>
+      <div class="form-group">
+        <label for="reg-email">Correo electrónico:</label>
+        <input type="email" id="reg-email" [(ngModel)]="registro.email" name="email" required>
+      </div>
+      <div class="form-group">
+        <label for="reg-password">Contraseña:</label>
+        <input type="password" id="reg-password" [(ngModel)]="registro.password" name="password" required>
+      </div>
+      <button type="submit" class="btn-register" [disabled]="loading">
+        {{ loading ? 'Registrando...' : 'Registrarse' }}
+      </button>
+      <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
+    </form>
+    <div class="toggle-link">
+      ¿Ya tienes cuenta?
+      <a href="#" (click)="showRegistration = false; $event.preventDefault()">Inicia sesión aquí</a>
+    </div>
+  </div>
+
+  <div class="divider" *ngIf="!showRegistration">
+    <span>o</span>
+  </div>
+  
+  <!-- Botón para Google -->
+  <button class="btn-google" *ngIf="!showRegistration" (click)="loginWithGoogle()" [disabled]="loading">
+    <mat-icon class="google-icon">google</mat-icon>
+    Iniciar Sesión con Google
+  </button>
+
+  <footer>
+    <p>2025 Arbizu & Pombo Médicos. Todos los derechos reservados.</p>
+  </footer>
+</div>
+
+<!-- Modal de recuperación de contraseña -->
+<div class="modal-backdrop" *ngIf="showResetPassword" (click)="showResetPassword=false"></div>
+<div class="modal" *ngIf="showResetPassword">
+  <form (ngSubmit)="onResetPassword()" class="reset-form" autocomplete="off">
+    <h3>Restablecer contraseña</h3>
+    <p>Introduce tu correo y te enviaremos un enlace para restablecer tu contraseña.</p>
+    <input type="email" [(ngModel)]="resetEmail" name="resetEmail" placeholder="Tu correo" required>
+    <button type="submit" class="btn-reset" [disabled]="resetLoading">Enviar correo</button>
+    <button type="button" class="btn-cancel" (click)="showResetPassword=false">Cancelar</button>
+    <div *ngIf="resetMessage" class="success-message">{{resetMessage}}</div>
+    <div *ngIf="resetError" class="error-message">{{resetError}}</div>
+  </form>
+</div>

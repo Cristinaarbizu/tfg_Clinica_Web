@@ -1,0 +1,161 @@
+.citas-container {
+  max-width: 900px;
+  margin: 40px auto;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+  padding: 32px 28px;
+
+  h2 {
+    text-align: center;
+    margin-bottom: 28px;
+    color: #2a3b4d;
+    font-weight: 700;
+  }
+
+  .acciones {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+
+    .buscador {
+      flex: 1;
+      padding: 10px 14px;
+      border: 1.5px solid #d1d5db;
+      border-radius: 7px;
+      font-size: 16px;
+      margin-right: 16px;
+      background: #fafbfc;
+      transition: border-color 0.2s;
+
+      &:focus {
+        border-color: #007bff;
+        outline: none;
+        background: #f4f8ff;
+        box-shadow: 0 0 0 2px #007bff22;
+      }
+    }
+
+    .agregar-btn {
+      background: #007bff;
+      color: #fff;
+      border: none;
+      padding: 10px 24px;
+      border-radius: 7px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.2s;
+
+      &:hover {
+        background: #0056b3;
+        color: #fff;
+      }
+    }
+  }
+
+  .tabla-citas {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+
+    th, td {
+      padding: 12px 10px;
+      text-align: left;
+      vertical-align: middle;
+    }
+
+    thead th {
+      background: #f2f6fa;
+      color: #2a3b4d;
+      font-weight: 600;
+      border-bottom: 2px solid #e5e7eb;
+    }
+
+    tbody tr {
+      border-bottom: 1px solid #e5e7eb;
+      transition: background 0.2s;
+
+      &:hover {
+        background: #f8fafc;
+      }
+    }
+
+    .acciones-btn {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: flex-start;
+      align-items: center;
+      max-width: 230px; 
+
+      .editar-btn, .eliminar-btn, .completar-btn, .cancelar-btn, .whatsapp-btn {
+        border: none;
+        padding: 7px 15px;
+        border-radius: 5px;
+        font-size: 14px;
+        cursor: pointer;
+        font-weight: 500;
+        transition: background 0.2s;
+      }
+
+      .editar-btn {
+        background: #f1c40f;
+        color: #fff;
+        &:hover { background: #d4ac0d; }
+      }
+
+      .eliminar-btn {
+        background: #e74c3c;
+        color: #fff;
+        &:hover { background: #c0392b; }
+      }
+
+      .completar-btn {
+        background: #27ae60;
+        color: #fff;
+        &:hover { background: #219150; }
+      }
+
+      .cancelar-btn {
+        background: #95a5a6;
+        color: #fff;
+        &:hover { background: #7f8c8d; }
+      }
+
+      .whatsapp-btn {
+        background: #25D366;
+        color: #fff;
+        &:hover { background: #128C7E; }
+      }
+    }
+  }
+
+  // Confirmación
+  .tabla-citas td span {
+    font-size: 16px;
+    font-weight: 600;
+    &.confirmada { color: #27ae60; }
+    &.cancelada { color: #e74c3c; }
+    &.pendiente { color: #f39c12; }
+  }
+}
+
+// Responsive
+@media (max-width: 900px) {
+  .citas-container {
+    padding: 16px 4px;
+    .acciones {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 10px;
+      .buscador { margin-right: 0; }
+    }
+    .tabla-citas th, .tabla-citas td {
+      font-size: 13px;
+      padding: 8px 6px;
+    }
+  }
+}

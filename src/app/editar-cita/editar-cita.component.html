@@ -1,0 +1,45 @@
+<div class="form-container">
+  <h2>Editar Cita</h2>
+  <form (ngSubmit)="actualizarCita()">
+    <div class="form-group">
+      <label for="paciente">Paciente</label>
+      <select id="paciente" [(ngModel)]="cita.id_paciente" name="id_paciente" required>
+        <option value="">Seleccione un paciente</option>
+        <option *ngFor="let paciente of pacientes$ | async" [value]="paciente.id">
+          {{ paciente.nombre }} {{ paciente.apellido }}
+        </option>
+      </select>
+    </div>
+
+    <p *ngIf="medicoAsignado" class="info-medico">Médico asignado: {{ medicoAsignado }}</p>
+
+    <div class="form-group">
+      <label for="fecha">Fecha</label>
+      <input type="date" id="fecha" [(ngModel)]="fechaFormateada" name="fecha" required />
+    </div>
+
+    <div class="form-group">
+      <label for="hora">Hora</label>
+      <input type="time" id="hora" [(ngModel)]="cita.hora" name="hora" required />
+    </div>
+
+    <div class="form-group">
+      <label for="motivo">Motivo</label>
+      <textarea id="motivo" [(ngModel)]="cita.motivo" name="motivo" required></textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="estado">Estado</label>
+      <select id="estado" [(ngModel)]="cita.estado" name="estado" required>
+        <option value="programada">Programada</option>
+        <option value="completada">Completada</option>
+        <option value="cancelada">Cancelada</option>
+      </select>
+    </div>
+
+    <div class="botones">
+      <button type="submit" class="guardar">Guardar Cambios</button>
+      <button type="button" class="cancelar" (click)="cancelar()">Cancelar</button>
+    </div>
+  </form>
+</div>

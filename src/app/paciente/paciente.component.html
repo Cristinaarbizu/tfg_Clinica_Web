@@ -1,0 +1,42 @@
+<div class="form-container">
+  <h2>Gestión de Pacientes</h2>
+  
+  <div class="acciones">
+    <input 
+      type="text" 
+      class="buscador"
+      placeholder="Buscar paciente..."
+      [(ngModel)]="searchTerm"
+      (ngModelChange)="onSearchTermChange()"
+    />
+    <a routerLink="/agregar-paciente" class="agregar-btn">Agregar Paciente</a>
+  </div>
+
+  <table class="tabla-pacientes">
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Apellido</th>
+        <th>Teléfono</th>
+        <th>Email</th>
+        <th>Dirección</th>
+        <th>Trabajador Asignado</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let paciente of filteredPacientes$ | async">
+        <td>{{ paciente.nombre }}</td>
+        <td>{{ paciente.apellido }}</td>
+        <td>{{ paciente.telefono }}</td>
+        <td>{{ paciente.email }}</td>
+        <td>{{ paciente.direccion }}</td>
+        <td>{{ paciente.trabajadorInfo }}</td>
+        <td class="acciones-btn">
+          <button class="editar-btn" (click)="editarPaciente(paciente)">Editar</button>
+          <button class="eliminar-btn" (click)="eliminarPaciente(paciente.id!)">Eliminar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

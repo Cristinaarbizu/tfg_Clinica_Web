@@ -1,0 +1,116 @@
+.trabajadores-container {
+  max-width: 900px;
+  margin: 40px auto;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+  padding: 32px 28px;
+
+  h2 {
+    text-align: center;
+    margin-bottom: 24px;
+    color: #2a3b4d;
+    font-weight: 700;
+  }
+
+  .acciones {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 22px;
+
+    .buscador {
+      flex: 1;
+      padding: 8px 14px;
+      border: 1px solid #d1d5db;
+      border-radius: 6px;
+      font-size: 15px;
+      margin-right: 16px;
+      transition: border-color 0.2s;
+
+      &:focus {
+        border-color: #007bff;
+        outline: none;
+      }
+    }
+
+    .nuevo-btn {
+      background: #007bff;
+      color: #fff;
+      border: none;
+      padding: 9px 22px;
+      border-radius: 6px;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s;
+
+      &:hover {
+        background: #0056b3;
+      }
+    }
+  }
+
+  .tabla-trabajadores {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+
+    th, td {
+      padding: 12px 10px;
+      text-align: left;
+    }
+
+    thead th {
+      background: #f2f6fa;
+      color: #2a3b4d;
+      font-weight: 600;
+      border-bottom: 2px solid #e5e7eb;
+    }
+
+    tbody tr {
+      border-bottom: 1px solid #e5e7eb;
+      transition: background 0.2s;
+
+      &:hover {
+        background: #f8fafc;
+      }
+    }
+
+    .editar-btn, .eliminar-btn {
+      border: none;
+      padding: 7px 15px;
+      border-radius: 5px;
+      margin-right: 7px;
+      font-size: 14px;
+      cursor: pointer;
+      font-weight: 500;
+      transition: background 0.2s;
+    }
+
+    .editar-btn {
+      background: #f1c40f;
+      color: #fff;
+
+      &:hover {
+        background: #d4ac0d;
+      }
+    }
+
+    .eliminar-btn {
+      background: #e74c3c;
+      color: #fff;
+
+      &:hover {
+        background: #c0392b;
+      }
+    }
+  }
+
+  .sin-registros {
+    text-align: center;
+    color: #888;
+    margin-top: 30px;
+    font-size: 18px;
+  }
+}

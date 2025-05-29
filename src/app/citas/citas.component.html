@@ -1,0 +1,55 @@
+<div class="citas-container">
+  <h2>Gestión de Citas</h2>
+
+  <div class="acciones">
+    <input
+      type="text"
+      class="buscador"
+      placeholder="Buscar paciente, motivo, fecha..."
+      [(ngModel)]="searchTerm"
+      (input)="onSearchTermChange()"
+    />
+    <button class="agregar-btn" [routerLink]="['/agregar-cita']">+ Añadir nueva cita</button>
+  </div>
+
+  <table class="tabla-citas">
+    <thead>
+      <tr>
+        <th>Paciente</th>
+        <th>Fecha</th>
+        <th>Hora</th>
+        <th>Motivo</th>
+        <th>Estado</th>
+        <th>Confirmación</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let cita of citasConNombrePaciente$ | async">
+        <td>{{ cita.nombrePaciente }}</td>
+        <td>{{ cita.fecha | date }}</td>
+        <td>{{ cita.hora }}</td>
+        <td>{{ cita.motivo }}</td>
+        <td>{{ cita.estado }}</td>
+        <td>
+          <span *ngIf="cita.confirmada === true" class="confirmada">✅ Confirmada</span>
+          <span *ngIf="cita.confirmada === false" class="cancelada">❌ Cancelada</span>
+          <span *ngIf="cita.confirmada === null || cita.confirmada === undefined" class="pendiente">⏳ Pendiente</span>
+        </td>
+        <td>
+          <div class="acciones-btn">
+            <button class="editar-btn" [routerLink]="['/editar-cita', cita.id]">Editar</button>
+            <button class="eliminar-btn" (click)="eliminarCita(cita.id!)">Eliminar</button>
+            <button *ngIf="cita.estado === 'programada'" class="completar-btn" (click)="actualizarEstadoCita(cita.id!, 'completada')">Completar</button>
+            <button *ngIf="cita.estado === 'programada'" class="cancelar-btn" (click)="actualizarEstadoCita(cita.id!, 'cancelada')">Cancelar</button>
+            <button 
+              class="whatsapp-btn"
+              *ngIf="cita.telefonoPaciente && esCitaFutura(cita.fecha) && cita.estado === 'programada'"
+              (click)="enviarWhatsAppConfirmacion(cita)"> Recordatorio
+            </button>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

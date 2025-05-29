@@ -1,0 +1,112 @@
+<div class="form-container">
+  <h2>Agregar Nueva Cita</h2>
+  
+  <form (ngSubmit)="agregarCita()">
+    
+    <!-- Buscar o seleccionar un paciente -->
+    <div class="form-group">
+      <label for="paciente">Paciente</label>
+      <input
+        type="text"
+        id="paciente"
+        placeholder="Buscar paciente por nombre o apellido"
+        [(ngModel)]="pacienteInputValue"
+        name="pacienteInputValue"
+        (keyup)="searchTerm$.next(pacienteInputValue)"
+        [disabled]="mostrarFormularioPaciente"
+        autocomplete="off"
+      />
+      
+      <ul *ngIf="resultadosBusqueda$ | async as resultados"
+          class="lista-resultados"
+          [hidden]="pacienteSeleccionado || mostrarFormularioPaciente">
+        <li *ngFor="let paciente of resultados" (click)="onPacienteSeleccionado(paciente)">
+          {{ paciente.nombre }} {{ paciente.apellido }}
+        </li>
+        <li *ngIf="resultados.length === 0" 
+            (click)="mostrarFormularioAgregarPaciente()" 
+            class="opcion-agregar">
+          ➕ Agregar nuevo paciente
+        </li>
+      </ul>
+    </div>
+
+    <!-- Formulario para agregar nuevo paciente -->
+    <div *ngIf="mostrarFormularioPaciente" class="form-nuevo-paciente">
+      <h3>Agregar Nuevo Paciente</h3>
+      
+      <div class="form-group">
+        <label for="nombre">Nombre</label>
+        <input [(ngModel)]="nuevoPaciente.nombre" name="nombre" placeholder="Nombre" required />
+      </div>
+      
+      <div class="form-group">
+        <label for="apellido">Apellido</label>
+        <input [(ngModel)]="nuevoPaciente.apellido" name="apellido" placeholder="Apellido" required />
+      </div>
+
+      <div class="form-group">
+        <label for="trabajador">Trabajador asignado</label>
+        <select [(ngModel)]="nuevoPaciente.id_trabajador" name="trabajador" required>
+          <option value="">Seleccionar trabajador</option>
+          <option *ngFor="let trabajador of trabajadores$ | async" [value]="trabajador.id">
+            {{ trabajador.nombre }} {{ trabajador.apellido }}
+          </option>
+        </select>
+      </div>
+      
+      <div class="form-group">
+        <label for="telefono">Teléfono</label>
+        <input [(ngModel)]="nuevoPaciente.telefono" name="telefono" placeholder="Teléfono" required />
+      </div>
+      
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" [(ngModel)]="nuevoPaciente.email" name="email" placeholder="Email" required />
+      </div>
+      
+      <div class="form-group">
+        <label for="direccion">Dirección</label>
+        <input [(ngModel)]="nuevoPaciente.direccion" name="direccion" placeholder="Dirección" required />
+      </div>
+
+      <div class="botones">
+        <button type="button" (click)="agregarPaciente()" class="guardar">Guardar Paciente</button>
+        <button type="button" (click)="cancelarAgregarPaciente()" class="cancelar">Cancelar</button>
+      </div>
+    </div>
+
+    <!-- Información del médico asignado -->
+    <p *ngIf="pacienteSeleccionado" class="info-medico">Trabajador asignado: {{ medicoAsignado }}</p>
+
+    <!-- Campos de la cita -->
+    <div class="form-group">
+      <label for="fecha">Fecha</label>
+      <input type="date" id="fecha" [(ngModel)]="nuevaCita.fecha" name="fecha" required />
+    </div>
+
+    <div class="form-group">
+      <label for="hora">Hora</label>
+      <input type="time" id="hora" [(ngModel)]="nuevaCita.hora" name="hora" required />
+    </div>
+
+    <div class="form-group">
+      <label for="motivo">Motivo</label>
+      <textarea id="motivo" [(ngModel)]="nuevaCita.motivo" name="motivo" required></textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="estado">Estado</label>
+      <select id="estado" [(ngModel)]="nuevaCita.estado" name="estado" required>
+        <option value="programada">Programada</option>
+        <option value="completada">Completada</option>
+        <option value="cancelada">Cancelada</option>
+      </select>
+    </div>
+
+    <div class="botones">
+      <button type="submit" [disabled]="!pacienteSeleccionado" class="guardar">Guardar Cita</button>
+      <button type="button" class="cancelar" (click)="cancelar()">Cancelar</button>
+    </div>      
+  </form>
+</div>

@@ -1,0 +1,30 @@
+.grafica-container {
+  background: #fff;
+  border-radius: 10px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  max-width: 700px;
+  margin: 2rem auto;
+}
+
+.grafica-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+
+  label {
+    margin-right: 0.5rem;
+    font-weight: bold;
+  }
+
+  select {
+    padding: 0.2rem 0.5rem;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+}
+
+.grafica-chart {
+  width: 100%;
+  min-height: 350px;
+}

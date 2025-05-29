@@ -1,0 +1,18 @@
+<div class="grafica-container">
+  <div class="grafica-header">
+    <label for="agrupacion"><b>Ver por:</b></label>
+    <select id="agrupacion" [(ngModel)]="agrupacion" (change)="actualizarGrafica()">
+      <option value="week">Semana</option>
+      <option value="month">Mes</option>
+      <option value="year">Año</option>
+    </select>
+  </div>
+  <div class="grafica-chart">
+    <canvas baseChart
+      [datasets]="chartData"
+      [labels]="chartLabels"
+      [options]="chartOptions"
+      [type]="'line'">
+    </canvas>
+  </div>
+</div>

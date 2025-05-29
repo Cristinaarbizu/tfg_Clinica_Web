@@ -1,0 +1,44 @@
+<div class="form-container">
+  <h2>Editar Paciente</h2>
+  <form (ngSubmit)="guardarCambios()">
+    <div class="form-group">
+      <label for="nombre">Nombre</label>
+      <input type="text" id="nombre" [(ngModel)]="paciente.nombre" name="nombre" required>
+    </div>
+
+    <div class="form-group">
+      <label for="apellido">Apellido</label>
+      <input type="text" id="apellido" [(ngModel)]="paciente.apellido" name="apellido" required>
+    </div>
+
+    <div class="form-group">
+      <label for="telefono">Teléfono</label>
+      <input type="text" id="telefono" [(ngModel)]="paciente.telefono" name="telefono" required>
+    </div>
+
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="email" id="email" [(ngModel)]="paciente.email" name="email" required>
+    </div>
+
+    <div class="form-group">
+      <label for="direccion">Dirección</label>
+      <input type="text" id="direccion" [(ngModel)]="paciente.direccion" name="direccion" required>
+    </div>
+
+    <div class="form-group">
+      <label for="trabajador">Trabajador Asignado</label>
+      <select id="trabajador" name="trabajador" [(ngModel)]="paciente.id_trabajador" required>
+        <option value="">Seleccione un trabajador</option>
+        <option *ngFor="let trabajador of trabajadores$ | async" [value]="trabajador.id">
+          {{ trabajador.nombre }} {{ trabajador.apellido }} ({{ trabajador.especialidad }})
+        </option>
+      </select>
+    </div>
+
+    <div class="botones">
+      <button type="submit" class="guardar">Guardar Cambios</button>
+      <button type="button" class="cancelar" (click)="cancelar()">Cancelar</button>
+    </div>
+  </form>
+</div>

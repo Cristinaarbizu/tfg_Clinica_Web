@@ -1,0 +1,62 @@
+<div class="dashboard-container">
+  <div class="header">
+    <h2>Bienvenido, {{ usuarioEmail }}</h2>
+    <button class="logout-button" (click)="logout()">Cerrar Sesión</button>
+  </div>
+
+  <div class="grid-container">
+    <div class="card">
+      <div class="card-header">
+        <i class="fas fa-calendar-alt"></i> Citas Programadas
+      </div>
+      <div class="card-body">
+        {{ citasProgramadas$ | async }}
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <i class="fas fa-user-md"></i> Médicos/Enfermeros Disponibles
+      </div>
+      <div class="card-body">
+        {{ medicosEnfermerosDisponibles$ | async }}
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <i class="fas fa-check-circle"></i> Citas Completadas
+      </div>
+      <div class="card-body">
+        {{ citasCompletadas$ | async }}
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <i class="fas fa-exclamation-triangle"></i> Citas Canceladas
+      </div>
+      <div class="card-body">
+        {{ citasCanceladas$ | async }}
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <i class="fas fa-users"></i> Total Pacientes
+      </div>
+      <div class="card-body">
+        {{ totalPacientes$ | async }}
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <i class="fas fa-calendar-day"></i> Citas Hoy
+      </div>
+      <div class="card-body">
+        {{ citasHoy$ | async }}
+      </div>
+    </div>
+  </div>
+</div>

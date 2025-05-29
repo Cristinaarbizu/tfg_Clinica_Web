@@ -1,0 +1,41 @@
+.layout {
+    display: flex;
+    height: 100vh;
+  }
+  
+  .sidebar {
+    width: 250px;
+    background-color: #2e4a3d;
+    color: white;
+    padding: 20px;
+  
+    ul {
+      list-style-type: none;
+      padding: 0;
+  
+      li {
+        margin-bottom: 10px;
+  
+        a {
+          color: white;
+          text-decoration: none;
+          font-size: 18px;
+          display: block;
+          padding: 10px;
+          border-radius: 5px;
+          transition: background-color 0.3s;
+  
+          &:hover, &.active {
+            background-color: #3c6351;
+          }
+        }
+      }
+    }
+  }
+  
+  .content {
+    flex-grow: 1;
+    padding: 20px;
+    overflow-y: auto;
+  }
+  

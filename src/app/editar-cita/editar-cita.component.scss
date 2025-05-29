@@ -1,0 +1,95 @@
+.form-container {
+  max-width: 420px;
+  margin: 40px auto;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+  padding: 32px 28px;
+
+  h2 {
+    text-align: center;
+    margin-bottom: 28px;
+    color: #2a3b4d;
+    font-weight: 700;
+  }
+
+  .form-group {
+    margin-bottom: 24px;
+
+    label {
+      display: block;
+      margin-bottom: 6px;
+      color: #34495e;
+      font-weight: 500;
+      font-size: 15.5px;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 8px ;
+      border: 1.5px solid #d1d5db;
+      border-radius: 7px;
+      font-size: 16px;
+      background: #fafbfc;
+      transition: border-color 0.2s, box-shadow 0.2s;
+
+      &:focus {
+        border-color: #007bff;
+        outline: none;
+        background: #f4f8ff;
+        box-shadow: 0 0 0 2px #007bff22;
+      }
+    }
+
+    textarea {
+      height: 100px;
+      resize: vertical;
+    }
+  }
+
+  .info-medico {
+    margin-bottom: 20px;
+    color: #34495e;
+    font-weight: 600;
+    font-size: 15px;
+  }
+
+  .botones {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 22px;
+
+    button {
+      padding: 10px 26px;
+      border-radius: 7px;
+      border: none;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s;
+
+      &.guardar {
+        background: #007bff;
+        color: #fff;
+
+        &:hover:not(:disabled) {
+          background: #0056b3;
+        }
+
+        &:disabled {
+          background: #a3c0ff;
+          cursor: not-allowed;
+        }
+      }
+
+      &.cancelar {
+        background: #e0e0e0;
+        color: #34495e;
+
+        &:hover {
+          background: #bdbdbd;
+        }
+      }
+    }
+  }
+}
